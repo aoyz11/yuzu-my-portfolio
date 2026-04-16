@@ -122,7 +122,7 @@ main{
 	gap:10px;
 	font-size: 17px;
 	width: 500px;
-	height: 95px;
+	height: 120px;
   	background-color: rgba(255, 255, 255, 0.3);
   	backdrop-filter: blur(8px);
   	-webkit-backdrop-filter: blur(8px);
@@ -143,6 +143,9 @@ main{
 .btn-wrap-l{
 	display: flex;
 	flex-direction: column;
+}
+.btn-wrap-l .arrow-link-right{
+	font-weight: normal;
 }
 h1{
 	font-size: 34px;
@@ -233,7 +236,8 @@ h2{
 	padding-bottom: 20px;
   }
   .timeline-content p{
-	padding-top: 5px;	
+	padding-top: 5px;
+	font-weight: normal;
 	}
   .timeline-content:before {
     content: '';
