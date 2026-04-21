@@ -306,6 +306,10 @@ h2{
 	max-width: 700px;
 	height: 100px;
 }
+	
+.work-box1 img, .work-box2 img, .work-box3 img, .work-box4 img{
+	width: 100%;
+}
 
 .work-box1, .work-box2, .work-box3, .work-box4{
 	width: calc(50% - 20px);			
@@ -355,7 +359,10 @@ h2{
 .contents-text.box2 p{
 	font-size: 16px;
 }
-
+.aim{
+	font-size: 20px;
+	font-weight: bold;
+}
 /*==================
 slickbannerスライダー
 ==================*/
@@ -465,7 +472,11 @@ slickbannerスライダー
 }
 .box-title p{
 	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
+/*
 .b-btn{
 	display: inline-block;
 	width: 400px;
@@ -477,14 +488,15 @@ slickbannerスライダー
 	color: #204659;
 	font-size: 16px;
 }
+/*
 .b-btn.-l{
 	position: relative;
 	width: 50px;
 	height: 50px;
 	bottom: 50px;
 	left: 830px;
-}
-.b-btn.-l:after{
+}*/
+/*.b-btn.-l:after{
 	content: "";
 	position: absolute;
 	width: 13px;
@@ -494,7 +506,7 @@ slickbannerスライダー
 	top: 55%;
 	left:50%;
 	transform: translate(-50%,-50%) rotate(-135deg);
-}
+}*/
 .b-btn.-l:hover{
 	color: #fff;
 	background-color: #204659;
