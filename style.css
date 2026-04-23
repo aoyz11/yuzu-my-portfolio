@@ -76,7 +76,6 @@ header{
 	display: flex;
 	gap: 30px;
 	font-size: 18px;
-	font-weight: bold;
 }
 .header-mv{
 	margin-bottom: 120px;
@@ -120,10 +119,9 @@ main{
 
 /*新着ニュース*/
 .news-contents{
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	justify-content: center;
-	align-items: center;
+	align-content: center;
 	gap: 20px;
 	width: 100%;
 	max-width: 800px;
@@ -165,17 +163,20 @@ main{
 	font-weight: normal;
 }
 h1{
-	font-size: 34px;
+	font-size: 35px;
 	font-weight: bold;
 	line-height: 2.5;
 }
 h2{
-	font-size: 22px;
+	font-size: 25px;
 	font-weight: bold;
 	padding-bottom: 10px;
 }
+h3{
+	font-size: 20px;
+}
 .about-text p{
-	font-size: 16px;
+	font-size: 17px;
 	padding-left: 20px;
 	line-height: 2;
 }
@@ -184,13 +185,13 @@ h2{
 	max-width: 1100px;
 	margin: 0 auto;
 	margin-top: 50px;
-	margin-bottom: 100px;
+	margin-bottom: 180px;
 	padding: 0.4%;
 }
 .About{
 	display: flex;
 	flex-direction: column;
-	width: 600px;
+	width: 700px;
 	gap: 40px;
 }
 .text-contents{
@@ -219,7 +220,6 @@ h2{
 	max-width: 1100px;
 	margin: 0 auto;
 	margin-bottom: 100px;
-	padding: 0.4%;
 }
 .career h2{
 	padding-bottom: 20px;
@@ -247,7 +247,7 @@ h2{
 	font-size: 16px;
   }
   .timeline-content {
-    width: 75%;
+    width: 73%;
     float: left;
     border-left: 1px #CCCCCC solid;
     padding-left: 30px;
@@ -258,7 +258,11 @@ h2{
   .timeline-content p{
 	padding-top: 5px;
 	font-weight: normal;
-	line-height: 2.0;
+	color: #4a4b4e;
+	line-height: 1.5;
+	font-size: 17px;
+	  letter-spacing: .1em;
+
 	}
   .timeline-content:before {
     content: '';
@@ -480,13 +484,36 @@ slickbannerスライダー
 	flex-direction: column;
 	gap: 5px;
 }
+.contents-t{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+.contents-t dt{
+	font-size: 18px;
+	font-weight: bold;
+	color: #2e2f37;
+}
+.contents-t dd{
+	padding-left: 10px;
+	color: #4a4b4e;
+	letter-spacing: .1em;
+}
+
+.contact{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+	.contact p{
+		font-size: 22px;
+	}
 .img-sc{
 	display: block;
   	cursor: pointer;
 	width: 100%;
   	max-width: none;
   	overflow: hidden;
-  	width: 100%;
 }
 .img-sc img{
 	display: block;
@@ -542,7 +569,7 @@ slickbannerスライダー
 }
 .footer-nav{
 	align-items: flex-start;
-	padding: 100px 0 ;
+	padding: 160px 0 ;
 	border-radius: 200px 200px 0 0; 
 	background-color: rgba(255, 255, 255, .4);
 	backdrop-filter: blur(31px);
@@ -556,7 +583,6 @@ slickbannerスライダー
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	padding: 0 4%;
 }
 .footer-nav-list{
 	display: flex;
@@ -582,16 +608,8 @@ slickbannerスライダー
 small{
 	font-size: 10px;
 }
-.contact{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-.contact p{
-	font-size: 22px;
-}
-/*スマホ版*/
 	
+/*スマホ版*/	
 @media screen and(max-width: 768px){
 	.about-wappper, .works, .career{
 		padding: 0.5%;
@@ -631,7 +649,7 @@ small{
 /* ① バナー画像のサイズをスマホ画面の横幅に合わせる */
     .slick-slide img {
         width: 80vw;       /* スマホの画面幅の80%の大きさにする */
-        max-width: 300px;  /* ただし最大300pxでストップ */
+        max-width: 300px;  /* 最大300pxでストップ */
         height: auto;      /* 高さは自動計算で正方形をキープ */
     }
 
