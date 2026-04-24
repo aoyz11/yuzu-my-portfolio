@@ -291,7 +291,7 @@ h3{
 .arrow-link-right::after {
   	content: "";
   	position: absolute;
-  	left: 41%;
+  	left: 17%;
   	top: 50%;
   	width: 30px;
   	height: 10px;
@@ -368,6 +368,8 @@ h3{
 	font-size: 20px;
 	font-weight: bold;
 }
+	
+	
 /*==================
 slickbannerスライダー
 ==================*/
