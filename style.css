@@ -1,5 +1,4 @@
 @charset "UTF-8";
-/* CSS Document */
 *,* ::before,*::after{
 	box-sizing: border-box;
 	margin: 0;
@@ -17,29 +16,6 @@ body{
 	font-size: 16px;
 	width: 100%;
 }
-
-/*
-
-font-family: "nautica", sans-serif;
-font-weight: 400;
-font-style: normal;
-
-font-family: "nautica", sans-serif;
-font-weight: 400;
-font-style: normal;
-
-font-family: "adobe-caslon-pro", serif;
-font-weight: 400;
-font-style: normal;
-
-font-family: "adobe-caslon-pro", serif;
-font-weight: 700;
-font-style: normal;
-
-font-family: "adobe-caslon-pro", serif;
-font-weight: 400;
-font-style: italic;
-*/
 @keyframes gradationAnim {
     0% { background-position: 50% 100% }
     50% { background-position: 50% 0% }
@@ -72,10 +48,16 @@ header{
 	z-index: 10000;
 	margin-bottom: 200px;
 }
+.header-right img,.footer-logo img{
+	width: 100px;
+}
 .header-nav{
 	display: flex;
 	gap: 30px;
 	font-size: 18px;
+}
+.header-nav-item{
+	font-size: 14px;
 }
 .header-mv{
 	margin-bottom: 120px;
@@ -140,7 +122,7 @@ main{
 	justify-content: flex-start;
 	text-align: left;
 	font-size: 23px;
-	font-weight: bold;
+	letter-spacing: .3rem;
 }
 .news-img{
 	width: 440px;
@@ -478,7 +460,7 @@ slickbannerスライダー
 	margin-top: 10px;
 }
 .box-t{
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: bold;
 }
 .contents{
@@ -492,7 +474,7 @@ slickbannerスライダー
 	gap: 15px;
 }
 .contents-t dt{
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: bold;
 	color: #2e2f37;
 }
@@ -530,37 +512,6 @@ slickbannerスライダー
 	flex-direction: column;
 	gap: 20px;
 }
-/*
-.b-btn{
-	display: inline-block;
-	width: 400px;
-	height: 100px;
-	border: 1px solid #204659;
-	border-radius: 100vmax;
-	padding: .8em;
-	text-align: center;
-	color: #204659;
-	font-size: 16px;
-}
-/*
-.b-btn.-l{
-	position: relative;
-	width: 50px;
-	height: 50px;
-	bottom: 50px;
-	left: 830px;
-}*/
-/*.b-btn.-l:after{
-	content: "";
-	position: absolute;
-	width: 13px;
-	height: 13px;
-	border-bottom: solid 1px #000;
-	border-right: solid 1px #000;
-	top: 55%;
-	left:50%;
-	transform: translate(-50%,-50%) rotate(-135deg);
-}*/
 .b-btn.-l:hover{
 	color: #fff;
 	background-color: #204659;
@@ -591,13 +542,6 @@ slickbannerスライダー
 	gap: 30px;
 	margin-bottom: 40px;
 }
-/*.footer-logo{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 5px;
-}*/
 .info-contact{
 	display: flex;
 }
