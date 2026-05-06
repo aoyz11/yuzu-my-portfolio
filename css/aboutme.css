@@ -1,0 +1,630 @@
+@charset "UTF-8";
+/* CSS Document */
+*,* ::before,*::after{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 0 auto;
+	font-family: "Zen Kaku Gothic Antique","YuGothic","Yu Gothic","Meiryo";
+	font-weight: lighter;
+	font-style: normal;
+	color: #09090a;
+	font-size: 14px;
+	width: 100%;
+	overflow-x: hidden;
+}
+@keyframes gradationAnim {
+    0% { background-position: 50% 100% }
+    50% { background-position: 50% 0% }
+    100% { background-position: 50% 100% }
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #24292E;
+}
+a:hover{
+	opacity: 70%;
+}
+img{
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+	vertical-align: bottom;
+}
+
+/* ------------------------------
+ 丸く動く背景アニメーション
+ ------------------------------ */
+@keyframes blob_rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.bg-blobs {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1; /* 本文より背面へ */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none; /* 背景は操作対象外（クリック等を透過） */
+}
+
+.blob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation-name: blob_rotate; /* 中心基準で回転させ、擬似要素の相対位置を円運動させる */
+  animation-timing-function: linear; /* 一定速度で回転 */
+  animation-iteration-count: infinite; /* アニメーションを無限に繰り返す */
+}
+
+.blob::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4; /* 全体の発光強度（強すぎると本文を圧迫） */
+  transform: translate(-50%, -50%); /* left/top の基準点（左上）を要素の中心に補正 */
+  /* 見た目のコア：
+      - background: radial-gradient（中心が最も濃く、外側でフェードアウト）
+      - サイズ/位置/色/濃度は各 nth-child で個別に指定し、重なりで奥行きを作る */
+}
+
+/* 各 blob の速度や見た目（サイズ・色・配置・フェード距離）を個別に指定 */
+.blob:nth-child(1) {
+  animation-duration: 35000ms;
+}
+
+.blob:nth-child(1)::before {
+  left: -150px;
+  top: 150px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(rgba(128, 208, 199, 0.8) 0%, rgba(128, 208, 199, 0) 70%);
+}
+
+.blob:nth-child(2) {
+  animation-duration: 30000ms;
+  animation-direction: reverse; /* ひとつだけ回転の向きを反転 */
+}
+
+.blob:nth-child(2)::before {
+  left: 250px;
+  top: -250px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(rgba(172, 224, 249, 1) 0%, rgba(172, 224, 249, 0) 70%);
+}
+
+.blob:nth-child(3) {
+  animation-duration: 25000ms;
+}
+
+.blob:nth-child(3)::before {
+  left: 550px;
+  top: 300px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(rgba(19, 84, 122, 0.5) 0%, rgba(19, 84, 122, 0) 70%);
+}
+
+/* ------------------------------
+  レスポンシブ対応
+------------------------------ */
+@media (max-width: 767px) {
+  /* 固定配置の背景レイヤー（モバイル調整）
+      - 画面が狭いと blob（丸）が主張しやすいため、半径とオフセットのみ縮小
+      - アニメ速度や不透明度は PC と同一にし、見た目のトーンを揃える
+      - 文字や画像に被り過ぎないよう、端寄りの配置を弱める（left/top を再調整）
+  */
+  .blob:nth-child(1)::before {
+    left: -50px;
+    top: 50px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .blob:nth-child(2)::before {
+    left: 150px;
+    top: -150px;
+    width: 350px;
+    height: 350px;
+  }
+
+  .blob:nth-child(3)::before {
+    left: 450px;
+    top: 150px;
+    width: 500px;
+    height: 500px;
+  }
+}
+/* ------------------------------
+ 丸く動く背景アニメーション（終了）
+------------------------------*/
+
+.header-wapper {
+    width: 100%;
+    z-index: 1000;
+	border-bottom: 1px solid #333;
+	margin-bottom: 200px;
+}
+
+.header-inner {
+    margin: 0 auto;
+    padding: 20px 90px; /* 上下の余白 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- 4. PC用ナビゲーション (769px以上) --- */
+@media screen and (min-width: 769px) {
+	.header-nav {
+        display: flex;
+        gap: 20px;
+    }
+	.menu-icon, .menu { display: none; } /* PCではハンバーガーを隠す */
+}
+
+/* --- 5. スマホ用メニュー (768px以下) --- */
+@media screen and (max-width: 768px) {
+	.hero { height: 200px; } /* スマホでは少し低く */
+	.header-nav { display: none; } /* スマホでは通常のナビを隠す */
+
+    /* ハンバーガーボタン */
+.menu-icon {
+	width: 40px;
+	height: 30px;
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	z-index: 110;
+}
+
+.menu-icon span {
+	display: block;
+	height: 3px;
+	margin: 6px 0;
+	background: #333;
+	border-radius: 2px;
+	transition: 0.4s;
+}
+
+/* 変形アニメーション */
+#menu-toggle:checked + .menu-icon span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+#menu-toggle:checked + .menu-icon span:nth-child(2) { opacity: 0; }
+#menu-toggle:checked + .menu-icon span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* 引き出しメニュー本体 */
+.menu {
+	position: fixed;
+	top: 0;
+	right: -300px;
+	width: 300px;
+	height: 100vh;
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(8px);
+	z-index: 105;
+	transition: 0.4s ease-in-out;
+}
+#menu-toggle:checked ~ .menu { right: 0; }
+.menu ul { padding: 80px 20px; }
+.menu li { margin: 25px 0; }
+}
+
+/* ------------------------------
+ 私について
+ ------------------------------ */
+.about{
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 200px;
+}
+.a-title{
+	margin-bottom: 100px;
+}
+.a-title p{
+	position: relative;
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: .2rem;
+}
+.a-title p:before{
+	position: absolute;
+	border: 1px solid #000;
+	content:"";
+	width: 2em;
+	left: -75px;
+	top: 22px;
+}
+.my-profile{
+	display: flex;
+	justify-content: space-between;
+	max-width: 770px;
+	margin: 0 auto 170px auto;
+	gap:90px;
+}
+.a-name{
+	flex: 1;
+	line-height: 1.8;
+}
+.a-name p:nth-child(2){
+	margin-bottom: 20px;
+}
+.a-name h3{
+	margin-bottom: 50px;
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: .2rem;
+}
+.img-pic img{
+	width: 100%;
+	max-width: 250px;
+	flex: 1;
+	height: auto;
+	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+.a-name-about{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}
+.a-name-about a{
+	background: #fff;
+	border: 1px solid ;
+   	position: relative;
+   	display: flex;
+   	justify-content: space-around;
+   	align-items: center;
+   	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+   	padding: 10px 25px;
+   	color: #333;
+   	line-height: 1.8;
+   	text-decoration: none;
+   	transition: 0.3s ease-in-out;
+   	font-weight: 500;
+}
+.a-name-about a:hover {
+    background: #7bbbce;
+    color: #FFF;
+}
+.a-name-about a:after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transition: 0.3s ease-in-out;
+}
+.a-name-about a:hover:after {
+    border-color: #fff;
+}	
+
+/* ------------------------------
+ レスポンシブ（私について）
+ ------------------------------ */
+
+@media (max-width: 768px) {
+    /* 1. 全体幅を絞る（以前決めた88%〜90%くらいが綺麗です） */
+    .about {
+        width: 88%;
+        margin-bottom: 80px; /* 下の余白をスマホ用に詰める */
+    }
+
+    /* 2. タイトルの横棒（before）の位置調整 */
+    .a-title {
+        margin-bottom: 50px;
+        text-align: center; /* 中央寄せにしたい場合 */
+    }
+    
+    .a-title p {
+        font-size: 22px; /* 少し小さく */
+        display: inline-block;
+    }
+
+    .a-title p:before {
+        left: -50px; /* 棒の位置を調整 */
+        width: 1.5em;
+    }
+
+    /* 3. 横並び（flex）を縦並びに切り替え */
+    .my-profile {
+        flex-direction: column; /* 縦に並べる */
+        gap: 40px;             /* 画像と文字の間隔 */
+        align-items: center;    /* 中央に揃える */
+    }
+
+    /* 4. テキスト部分の調整 */
+    .a-name {
+        width: 100%;
+        order: 2; /* テキストを下に */
+    }
+
+    .a-name h3 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center; /* 名前を中央に */
+    }
+
+    .a-name p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    /* 5. 画像部分の調整 */
+    .img-pic {
+        order: 1; /* 画像を上に */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .img-pic img {
+        max-width: 220px; /* スマホで見やすいサイズ */
+    }
+
+    /* 6. 「私について」ボタン（右揃えを中央揃えに） */
+    .a-name-about {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* ボタンの中の矢印位置を微調整 */
+    .a-name-about a:after {
+        right: 18px; /* 丸ボタンの中央に寄せる */
+    }
+}	
+
+
+.biography {
+  max-width: 1000px; /* 全体の幅を制限 */
+  margin: 0 auto;
+}
+.bio-container{
+	padding: 0 50px;
+}
+/* タイトル部分 */
+.section-title {
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #333; /* 右側に伸びる線 */
+  padding-bottom: 10px;
+  margin-bottom: 60px;
+}
+
+/* 各行のレイアウト */
+.bio-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+.bio-item:last-child{
+	margin-bottom: 170px;
+}
+/* 黄色いドットと年号 */
+.bio-year {
+  display: flex;
+  align-items: center;
+  flex-basis: 150px; /* 年号部分の幅 */
+  flex-shrink: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* 疑似要素でドットを作成 */
+.bio-year::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #e2ff00;
+  border-radius: 50%;
+  margin-right: 25px;
+}
+
+/* 本文テキスト */
+.bio-content {
+  line-height: 1.8;
+  font-size: 14px;
+  color: #333;
+}
+
+/* モバイル対応：1日前の修正内容を参考に、スマホ版の幅も考慮 */
+@media (max-width: 768px) {
+  .bio-item {
+    flex-direction: column; /* 縦並びに変更 */
+  }
+  .bio-year {
+    margin-bottom: 10px;
+  }
+}
+
+.skills{
+	margin-bottom: 170px;
+}
+.skills-container {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.skill-column {
+  padding: 0 20px;
+}
+
+/* 中央の境界線 */
+.border-left {
+  border-left: 1px solid #999;
+}
+
+.skill-title {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  letter-spacing: 0.15em;
+  color: #001a33;
+}
+
+/* キラキラアイコンの再現（仮） */
+.skill-title::before {
+  content: "✴︎"; 
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.skill-text {
+  font-size: 14px;
+  line-height: 2;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* タグのスタイル */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background-color: #001a33; /* 濃紺 */
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* レスポンシブ：スマホ版は中央線を消して縦並びに */
+@media (max-width: 768px) {
+  .skills-container {
+    flex-direction: column;
+  }
+  .skill-column {
+    flex-basis: 100%;
+    padding: 0;
+    margin-bottom: 60px;
+  }
+  .border-left {
+    border-left: none;
+    border-top: 1px solid #999;
+    padding-top: 60px;
+  }
+}
+
+.strength-list{
+	padding: 0 50px;
+}
+/* 強みの見出し */
+.strength-title {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+/* 各強みのアイテム */
+.strength-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px; /* アイテム間の余白 */
+}
+
+/* 左側：数字と見出しのエリア */
+.strength-header {
+  display: flex;
+  align-items: center;
+  flex-basis: 35%; /* 左側の幅を確保 */
+  flex-shrink: 0;
+}
+
+/* 薄いグレーの数字 */
+.strength-number {
+  font-size: 15px;
+  color: #ccc; /* 数字をあえて薄く */
+  margin-right: 20px;
+  font-family: "serif"; /* 数字をセリフ体にするとより洗練されます */
+}
+/* 右側：説明文のエリア */
+.strength-description {
+  flex-basis: 60%; /* 右側の幅 */
+  line-height: 2; /* 行間を広めに取って読みやすく */
+  font-size: 15px;
+  text-align: justify; /* 両端揃えにすると綺麗です */
+}
+
+/* レスポンシブ対応：スマホでは縦並びに */
+@media (max-width: 768px) {
+  .strength-item {
+    flex-direction: column;
+  }
+  .strength-header {
+    margin-bottom: 15px;
+  }
+  .strength-description {
+    flex-basis: 100%;
+  }
+}
+
+.footer{
+	width: 100%;
+}
+.footer-logo img{
+	width: 90px;
+}
+.footer-nav{
+	align-items: flex-start;
+	padding-top: 160px;
+	padding-bottom: 200px;
+	border-radius: 50vmax 50vmax 0 0; 
+	background-color: rgba(255, 255, 255, .4);
+	backdrop-filter: blur(31px);
+	-webkit-backdrop-filter: blur(31px);
+	box-shadow: 0 4px 8px rgba(20, 28, 33, 0.25);	
+}
+.footer-inner{
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.footer-nav-list{
+	margin-bottom: 40px;
+}
+.footer-nav-list li{
+	margin-bottom: 10px;
+}
+.info-contact{
+	display: flex;
+}
+.info2:before {
+	border-left: 1px solid #5d5f68;
+	content:"";
+	padding-left: 5px;
+	margin-left: 5px;
+}
+small{
+	font-size: 10px;
+}

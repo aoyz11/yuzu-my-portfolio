@@ -1,0 +1,758 @@
+@charset "UTF-8";
+*,* ::before,*::after{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 0 auto;
+	width: 100%;
+	font-family: "Zen Kaku Gothic Antique","YuGothic","Yu Gothic","Meiryo";
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	color: #24292E;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #24292E;
+}
+a:hover{
+	opacity: 70%;
+}
+img{
+	max-width: 100%;
+	height: auto;
+	vertical-align: bottom;
+}
+
+/* ------------------------------
+ 丸く動く背景アニメーション
+ ------------------------------ */
+@keyframes blob_rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.bg-blobs {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1; /* 本文より背面へ */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none; /* 背景は操作対象外（クリック等を透過） */
+}
+
+.blob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation-name: blob_rotate; /* 中心基準で回転させ、擬似要素の相対位置を円運動させる */
+  animation-timing-function: linear; /* 一定速度で回転 */
+  animation-iteration-count: infinite; /* アニメーションを無限に繰り返す */
+}
+
+.blob::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4; /* 全体の発光強度（強すぎると本文を圧迫） */
+  transform: translate(-50%, -50%); /* left/top の基準点（左上）を要素の中心に補正 */
+  /* 見た目のコア：
+      - background: radial-gradient（中心が最も濃く、外側でフェードアウト）
+      - サイズ/位置/色/濃度は各 nth-child で個別に指定し、重なりで奥行きを作る */
+}
+
+/* 各 blob の速度や見た目（サイズ・色・配置・フェード距離）を個別に指定 */
+.blob:nth-child(1) {
+  animation-duration: 35000ms;
+}
+
+.blob:nth-child(1)::before {
+  left: -150px;
+  top: 150px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(rgba(128, 208, 199, 0.8) 0%, rgba(128, 208, 199, 0) 70%);
+}
+
+.blob:nth-child(2) {
+  animation-duration: 30000ms;
+  animation-direction: reverse; /* ひとつだけ回転の向きを反転 */
+}
+
+.blob:nth-child(2)::before {
+  left: 250px;
+  top: -250px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(rgba(172, 224, 249, 1) 0%, rgba(172, 224, 249, 0) 70%);
+}
+
+.blob:nth-child(3) {
+  animation-duration: 25000ms;
+}
+
+.blob:nth-child(3)::before {
+  left: 550px;
+  top: 300px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(rgba(19, 84, 122, 0.5) 0%, rgba(19, 84, 122, 0) 70%);
+}
+
+/* ------------------------------
+  レスポンシブ対応
+------------------------------ */
+@media (max-width: 767px) {
+  /* 固定配置の背景レイヤー（モバイル調整）
+      - 画面が狭いと blob（丸）が主張しやすいため、半径とオフセットのみ縮小
+      - アニメ速度や不透明度は PC と同一にし、見た目のトーンを揃える
+      - 文字や画像に被り過ぎないよう、端寄りの配置を弱める（left/top を再調整）
+  */
+  .blob:nth-child(1)::before {
+    left: -50px;
+    top: 50px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .blob:nth-child(2)::before {
+    left: 150px;
+    top: -150px;
+    width: 350px;
+    height: 350px;
+  }
+
+  .blob:nth-child(3)::before {
+    left: 450px;
+    top: 150px;
+    width: 500px;
+    height: 500px;
+  }
+}
+/* ------------------------------
+ 丸く動く背景アニメーション（終了）
+ ------------------------------ */
+
+/*ヘッダー*/
+header{
+	width: 100%;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+    background: linear-gradient(180deg, #fff0d6 0%, #c7eaff 100%);
+    background-size: 200% 200%;
+    animation: gradationAnim 10s ease infinite;
+	padding-bottom: 500px;
+	margin-bottom: 260px;
+}
+@keyframes gradationAnim {
+    0% { background-position: 50% 100% }
+    50% { background-position: 50% 0% }
+    100% { background-position: 50% 100% }
+}
+.header-top{
+	display: flex;
+	justify-content: space-between;
+	padding : 30px 30px 0 30px;
+	z-index: 10000;
+	margin-bottom: 270px;
+}
+.header-top img,.footer-logo img{
+	width: 100px;
+}
+.header-nav{
+	font-size: 18px;
+}
+.header-nav li{margin-bottom: 10px;}
+.header-nav-item{
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.mv-title{
+	margin: 0 auto;
+	padding-left: 5%;
+	width: 100%;
+	max-width: 1100px;
+	
+}
+.mv-title p{
+	letter-spacing: 0.1em;
+}
+
+/*ヘッダー終了*/
+
+main{
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+.p-1{
+	font-family: "adobe-caslon-pro", "sans-serif";
+	font-weight: 500;
+	font-style: normal;
+	font-size: 100px;
+	border-bottom: 1px solid #000;
+	line-height: 1;
+	width: fit-content;
+	max-width: none;
+	margin-bottom: 30px; 
+}
+.p-2{
+	font-size: 30px;
+	font-family: "Shippori Antique" , "sans-serif";
+
+}
+
+/*
+.btn-wrap-l a{
+	color: #204659;
+}
+.btn-wrap{
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+}
+.btn-wrap-l{
+	display: flex;
+	flex-direction: column;
+}
+.btn-wrap-l .arrow-link-right{
+	font-weight: normal;
+}
+*/
+h1{
+	font-size: 35px;
+	font-weight: bold;
+	line-height: 1.8;
+}
+h2{
+	font-size: 25px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+/*大切にしていること*/
+.a-text1{
+	margin-bottom: 60px;
+}
+.about-text p{
+	font-size: 17px;
+	padding-left: 20px;
+	line-height: 2.7;
+}
+.about-wappper{
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	margin-bottom: 260px;
+}
+.About{
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	gap: 90px;
+}
+.text-contents{
+	display: flex;
+	flex-direction: column;
+}
+.cureer-title{
+	font-size: 25px;
+	font-weight: bold;
+	padding-bottom: 30px;
+}
+.works{
+	width: 1100px;
+	margin: 0 auto;
+}
+/*大切にしていること終了*/
+
+.top-title{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	color: #000;
+	margin-bottom: 150px;
+}
+.top-title:before,.top-title:after {
+	border-top: 1px solid #7b7c7e;
+	content:"";
+	width: 2em;
+}
+.top-title:before{
+	margin-right: .5em;
+}
+.top-title:after{
+	margin-left: .5em;
+}
+.top-title-p1{
+	font-size: 35px;
+	font-family: "adobe-caslon-pro", "sans-serif";
+	letter-spacing: .2rem;
+	color: #2e2b2b;
+	vertical-align: bottom;
+}
+.work-wapper{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.work-contents{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 90px;
+	gap: 60px;
+	flex: 1;
+	width: 100%;
+}
+.work-img-zoom {
+    overflow: hidden; 
+    display: block;
+    width: 100%;
+}
+.work-box {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .5s ease; /* ズームの速度 */
+}
+.work-box img{
+	flex: 1;
+}
+.work-box-c {
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+}
+.work-box-c:hover .work-box {
+    transform: scale(1.1); 
+}
+.work-box-c:hover {
+	box-shadow: 6px	6px	60px rgba(123, 187, 206, 0.9);
+	transition: scale(0.95, 0.95);
+	transition-duration: 600ms;
+	transition-timing-function: ease;
+}
+.work-contents:last-child{
+	margin-bottom: 50px;
+}
+.work-contents:nth-child(odd) {
+	flex-direction: row-reverse;
+}
+.work-contents:nth-child(odd) .box-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+.box-text{
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	width: 100%;
+	max-width: 400px;
+	flex: 1;
+}
+.box-text ul{
+	display: flex;
+	gap: 20px;
+}
+.box-text li{
+	font-size: 14px;
+	color: #7bbbce;
+}
+.work-title{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.work-description{
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+.more-area{
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+.more-link {
+  	display: inline-block;
+  	text-align: right;
+  	text-decoration: none;
+  	outline: none;
+  	border-bottom: 2px;
+}
+
+.more-link:hover{
+  	color: #24292E;
+}
+
+.more-area a {
+  	position: relative;
+	font-size: 15px;
+}
+
+.more-area a::after {
+  	position: absolute;
+  	left: 0;
+  	content: '';
+  	width: 100%;
+  	height: 2px;
+  	background: #7bbbce;
+  	bottom: -10px;
+  	transform: scale(0, 1);
+  	transition: transform 0.5s;
+  	transform-origin: center top;
+}
+
+.more-area a:hover::after {
+  	transform: scale(1, 1)
+}
+
+/**/
+.btn-about{ 
+	text-align: center;
+	margin-bottom: 150px;
+}
+.b-btn {
+  	display: inline-flex;
+  	text-decoration: none;
+  	color: #111;
+  	width: 100px;
+  	height: 100px;
+  	font-size: 14px;
+  	position: relative;
+  	opacity: 1 !important;
+  	transition: all 0.3s;
+  	background-color: #CCC;
+  	border-radius: 100%;
+  	transition: color 0.4s;
+  	overflow: hidden;
+}
+.b-btn:before,
+.b-btn:after {
+  	content: "";
+  	display: block;
+  	position: absolute;
+  	width: 50%;
+  	height: 0;
+  	background-color: #7bbbce;
+  	pointer-events: none;
+}
+.b-btn:before {
+  	bottom: 0;
+  	left: 0;
+}
+.b-btn:after {
+  	top: 0;
+  	right: 0;
+}
+.b-btn:hover {
+  	color: #7bbbce;
+}
+.b-btn:hover:before,
+.b-btn:hover:after {
+  	height: 100%;
+}
+.b-btn:hover:before {
+  	transition: height 0.2s 0.2s linear;
+}
+.b-btn:hover:after {
+  	transition: height 0.2s linear;
+}
+.b-btn span {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	width: calc(100% - 4px);
+  	height: calc(100% - 4px);
+  	background-color: #FFF;
+  	border-radius: 100%;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	z-index: 99;
+}
+/* ------------------------------
+ 私について
+ ------------------------------ */
+.about{
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 150px;
+}
+.a-title{
+	margin-bottom: 100px;
+}
+.a-title p{
+	position: relative;
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: .2rem;
+}
+.a-title p:before{
+	position: absolute;
+	border: 1px solid #000;
+	content:"";
+	width: 2em;
+	left: -75px;
+	top: 22px;
+}
+.my-profile{
+	display: flex;
+	justify-content: space-between;
+	max-width: 770px;
+	margin: 0 auto;
+	gap:90px;
+}
+.a-name{
+	flex: 1;
+}
+.a-name p:nth-child(2){
+	margin-bottom: 20px;
+}
+.mp-a-box{
+	margin-bottom: 40px;
+}
+.a-name h3{
+	margin-bottom: 50px;
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: .2rem;
+}
+.img-pic img{
+	width: 100%;
+	max-width: 250px;
+	flex: 1;
+	height: auto;
+	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+.a-name-about{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}
+.a-name-about a{
+	background: #fff;
+	border: 1px solid ;
+   	position: relative;
+   	display: flex;
+   	justify-content: space-around;
+   	align-items: center;
+   	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+   	padding: 10px 25px;
+   	color: #333;
+   	line-height: 1.8;
+   	text-decoration: none;
+   	transition: 0.3s ease-in-out;
+   	font-weight: 500;
+}
+.a-name-about a:hover {
+    background: #7bbbce;
+    color: #FFF;
+}
+.a-name-about a:after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transition: 0.3s ease-in-out;
+}
+.a-name-about a:hover:after {
+    border-color: #fff;
+}	
+
+/* ------------------------------
+ レスポンシブ（私について）
+ ------------------------------ */
+
+@media (max-width: 768px) {
+    /* 1. 全体幅を絞る（以前決めた88%〜90%くらいが綺麗です） */
+    .about {
+        width: 88%;
+        margin-bottom: 80px; /* 下の余白をスマホ用に詰める */
+    }
+
+    /* 2. タイトルの横棒（before）の位置調整 */
+    .a-title {
+        margin-bottom: 50px;
+        text-align: center; /* 中央寄せにしたい場合 */
+    }
+    
+    .a-title p {
+        font-size: 22px; /* 少し小さく */
+        display: inline-block;
+    }
+
+    .a-title p:before {
+        left: -50px; /* 棒の位置を調整 */
+        width: 1.5em;
+    }
+
+    /* 3. 横並び（flex）を縦並びに切り替え */
+    .my-profile {
+        flex-direction: column; /* 縦に並べる */
+        gap: 40px;             /* 画像と文字の間隔 */
+        align-items: center;    /* 中央に揃える */
+    }
+
+    /* 4. テキスト部分の調整 */
+    .a-name {
+        width: 100%;
+        order: 2; /* テキストを下に */
+    }
+
+    .a-name h3 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center; /* 名前を中央に */
+    }
+
+    .a-name p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    /* 5. 画像部分の調整 */
+    .img-pic {
+        order: 1; /* 画像を上に */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .img-pic img {
+        max-width: 220px; /* スマホで見やすいサイズ */
+    }
+
+    /* 6. 「私について」ボタン（右揃えを中央揃えに） */
+    .a-name-about {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* ボタンの中の矢印位置を微調整 */
+    .a-name-about a:after {
+        right: 18px; /* 丸ボタンの中央に寄せる */
+    }
+}	
+/* ------------------------------
+ レスポンシブ
+ ------------------------------ */
+
+@media screen and (max-width: 767px) {
+	
+    /* 1. 全体を囲う枠の調整 */
+    .about-wappper {
+        width: 100%;
+        margin-bottom: 100px; /* PC版の260pxはスマホでは広すぎるので調整 */
+    }
+
+    /* 2. 700px固定を解除して、スマホでも「少し狭め」を維持する */
+    .About {
+        width: 88%;           /* 画面の88%の幅にする（左右に余白ができる） */
+        max-width: 500px;     /* 広がりすぎないように制限 */
+        margin: 0 auto;       /* 中央寄せ */
+        gap: 50px;            /* セクション間の隙間を少し詰める */
+    }
+
+    /* 3. 見出しの改行（br）を無効化する */
+    #aboutme br {
+        display: none;
+    }
+
+    /* 4. 本文の調整 */
+    .about-text p {
+        font-size: 15px;      /* 文字を少し小さく */
+        padding-left: 0;      /* PC版の20pxの余白をリセットして中央に寄せる */
+        line-height: 2.0;     /* 2.7だとスマホでは間延びするので少し詰める */
+    }
+	.work-img-zoom {
+		padding: 0 60px;
+	}
+	.a-text1 {
+    margin-bottom: 40px;
+	}
+	.work-contents {
+	flex-direction: column !important; 
+	gap: 30px; 
+	margin-bottom: 60px;
+	}
+	.work-contents:nth-child(odd) {
+	flex-direction: column !important;
+	}
+
+	.work-contents:nth-child(odd) .box-text,
+	.box-text {
+		text-align: left;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 60px;
+	}
+	.work-box-c {
+		width: 100%;
+	}
+	.work-box-c img {
+		width: 100%;
+		height: auto;
+	}
+}
+.footer{
+	width: 100%;
+}
+.footer-nav{
+	align-items: flex-start;
+	padding-top: 160px;
+	padding-bottom: 200px;
+	border-radius: 50vmax 50vmax 0 0; 
+	background-color: rgba(255, 255, 255, .4);
+	backdrop-filter: blur(31px);
+	-webkit-backdrop-filter: blur(31px);
+	box-shadow: 0 4px 8px rgba(20, 28, 33, 0.25);	
+}
+.footer-inner{
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.footer-nav-list{
+	margin-bottom: 40px;
+}
+.footer-nav-list li{
+	margin-bottom: 10px;
+}
+.info-contact{
+	display: flex;
+}
+.info2:before {
+	border-left: 1px solid #5d5f68;
+	content:"";
+	padding-left: 5px;
+	margin-left: 5px;
+}
+small{
+	font-size: 10px;
+}
