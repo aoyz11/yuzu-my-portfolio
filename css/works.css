@@ -280,9 +280,6 @@ img{
 	width: 100%;
 	margin-bottom: 15px;
 }
-.w-color{
-
-}
 .img-window {
     width: 300px;
     height: 500px; /* 固定したい高さ */
@@ -311,7 +308,10 @@ img{
 	width: 800px;
 	margin: 0 auto;
 }
-
+.dg-tool{
+	display: flex;
+	gap: 30px;
+}
 .footer{
 	width: 100%;
 }
