@@ -167,20 +167,17 @@ img{
     justify-content: space-between;
     align-items: center;
 }
-
-/* --- 4. PC用ナビゲーション (769px以上) --- */
 @media screen and (min-width: 769px) {
 	.header-nav {
         display: flex;
         gap: 20px;
     }
-	.menu-icon, .menu { display: none; } /* PCではハンバーガーを隠す */
+	.menu-icon, .menu { display: none; }
 }
 
-/* --- 5. スマホ用メニュー (768px以下) --- */
 @media screen and (max-width: 768px) {
-	.hero { height: 200px; } /* スマホでは少し低く */
-	.header-nav { display: none; } /* スマホでは通常のナビを隠す */
+	.hero { height: 200px; } 
+	.header-nav { display: none; } 
 
     /* ハンバーガーボタン */
 .menu-icon {
@@ -248,7 +245,7 @@ img{
 	content:"";
 	width: 2em;
 	left: -75px;
-	top: 22px;
+	top: 21px;
 }
 .my-profile{
 	display: flex;
@@ -325,94 +322,82 @@ img{
  ------------------------------ */
 
 @media (max-width: 768px) {
-    /* 1. 全体幅を絞る（以前決めた88%〜90%くらいが綺麗です） */
     .about {
         width: 88%;
-        margin-bottom: 80px; /* 下の余白をスマホ用に詰める */
+        margin-bottom: 80px; 
     }
-
-    /* 2. タイトルの横棒（before）の位置調整 */
     .a-title {
         margin-bottom: 50px;
-        text-align: center; /* 中央寄せにしたい場合 */
+        text-align: center; 
     }
-    
     .a-title p {
-        font-size: 22px; /* 少し小さく */
+        font-size: 28px;
         display: inline-block;
     }
-
     .a-title p:before {
-        left: -50px; /* 棒の位置を調整 */
+        left: -50px;
+		top: 16px;
         width: 1.5em;
     }
-
-    /* 3. 横並び（flex）を縦並びに切り替え */
     .my-profile {
-        flex-direction: column; /* 縦に並べる */
-        gap: 40px;             /* 画像と文字の間隔 */
-        align-items: center;    /* 中央に揃える */
+        flex-direction: column; 
+        gap: 40px;           
+        align-items: center;   
     }
 
-    /* 4. テキスト部分の調整 */
     .a-name {
         width: 100%;
-        order: 2; /* テキストを下に */
+        order: 2; 
     }
 
     .a-name h3 {
         margin-bottom: 30px;
         font-size: 20px;
-        text-align: center; /* 名前を中央に */
+        text-align: center; 
     }
 
     .a-name p {
         font-size: 15px;
         line-height: 1.8;
     }
-
-    /* 5. 画像部分の調整 */
     .img-pic {
-        order: 1; /* 画像を上に */
+        order: 1; 
         width: 100%;
         display: flex;
         justify-content: center;
     }
 
     .img-pic img {
-        max-width: 220px; /* スマホで見やすいサイズ */
+        max-width: 220px; 
     }
 
-    /* 6. 「私について」ボタン（右揃えを中央揃えに） */
     .a-name-about {
         justify-content: center;
         margin-top: 20px;
     }
 
-    /* ボタンの中の矢印位置を微調整 */
+
     .a-name-about a:after {
-        right: 18px; /* 丸ボタンの中央に寄せる */
+        right: 18px;
     }
 }	
 
 
 .biography {
-  max-width: 1000px; /* 全体の幅を制限 */
+  max-width: 1000px; 
   margin: 0 auto;
 }
 .bio-container{
 	padding: 0 50px;
 }
-/* タイトル部分 */
 .section-title {
   font-size: 24px;
   letter-spacing: 0.1em;
-  border-bottom: 1px solid #333; /* 右側に伸びる線 */
+  border-bottom: 1px solid #333;
   padding-bottom: 10px;
   margin-bottom: 60px;
 }
 
-/* 各行のレイアウト */
 .bio-item {
   display: flex;
   align-items: flex-start;
@@ -421,17 +406,14 @@ img{
 .bio-item:last-child{
 	margin-bottom: 170px;
 }
-/* 黄色いドットと年号 */
 .bio-year {
   display: flex;
   align-items: center;
-  flex-basis: 150px; /* 年号部分の幅 */
+  flex-basis: 150px; 
   flex-shrink: 0;
   font-weight: bold;
   font-size: 18px;
 }
-
-/* 疑似要素でドットを作成 */
 .bio-year::before {
   content: "";
   display: inline-block;
@@ -441,18 +423,16 @@ img{
   border-radius: 50%;
   margin-right: 25px;
 }
-
-/* 本文テキスト */
 .bio-content {
   line-height: 1.8;
   font-size: 14px;
   color: #333;
 }
 
-/* モバイル対応：1日前の修正内容を参考に、スマホ版の幅も考慮 */
+/* レスポンシブ*/
 @media (max-width: 768px) {
   .bio-item {
-    flex-direction: column; /* 縦並びに変更 */
+    flex-direction: column; 
   }
   .bio-year {
     margin-bottom: 10px;
@@ -463,129 +443,116 @@ img{
 	margin-bottom: 170px;
 }
 .skills-container {
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
-  justify-content: space-between;
+	display: flex;
+	max-width: 1100px;
+	margin: 0 auto;
+	justify-content: space-between;
 }
-
 .skill-column {
-  padding: 0 20px;
+	padding: 0 20px;
+	flex: 1;
+	
 }
-
-/* 中央の境界線 */
 .border-left {
-  border-left: 1px solid #999;
+	border-left: 1px solid #999;
 }
 
 .skill-title {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  letter-spacing: 0.15em;
-  color: #001a33;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	letter-spacing: 0.15em;
+	color: #001a33;
 }
-
-/* キラキラアイコンの再現（仮） */
 .skill-title::before {
-  content: "✴︎"; 
-  margin-right: 10px;
-  font-size: 18px;
+	content: "✴︎"; 
+	margin-right: 10px;
+	font-size: 18px;
 }
-
 .skill-text {
-  font-size: 14px;
-  line-height: 2;
-  margin-bottom: 40px;
-  color: #333;
+	font-size: 14px;
+	line-height: 2;
+	margin-bottom: 40px;
+	color: #333;
 }
-
-/* タグのスタイル */
 .skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 }
-
 .tag {
-  background-color: #001a33; /* 濃紺 */
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 12px;
-  letter-spacing: 0.05em;
+	background-color: #001a33; 
+	color: #fff;
+	padding: 8px 20px;
+	border-radius: 25px;
+	font-size: 12px;
+	letter-spacing: 0.05em;
 }
 
-/* レスポンシブ：スマホ版は中央線を消して縦並びに */
+/* レスポンシブ */
 @media (max-width: 768px) {
-  .skills-container {
+.skills-container {
     flex-direction: column;
-  }
-  .skill-column {
+}
+.skill-column {
     flex-basis: 100%;
     padding: 0;
     margin-bottom: 60px;
   }
-  .border-left {
+.border-left {
     border-left: none;
     border-top: 1px solid #999;
     padding-top: 60px;
-  }
+  	}
 }
-
 .strength-list{
 	padding: 0 50px;
 }
-/* 強みの見出し */
 .strength-title {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 0.1em;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
 }
-/* 各強みのアイテム */
 .strength-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 80px; /* アイテム間の余白 */
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 80px; 
 }
-
-/* 左側：数字と見出しのエリア */
 .strength-header {
-  display: flex;
-  align-items: center;
-  flex-basis: 35%; /* 左側の幅を確保 */
-  flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	flex-basis: 35%; 
+	flex-shrink: 0;
 }
-
-/* 薄いグレーの数字 */
 .strength-number {
-  font-size: 15px;
-  color: #ccc; /* 数字をあえて薄く */
-  margin-right: 20px;
-  font-family: "serif"; /* 数字をセリフ体にするとより洗練されます */
+	font-size: 15px;
+	color: #ccc; 
+	margin-right: 20px;
+	font-family: "serif";
 }
-/* 右側：説明文のエリア */
 .strength-description {
-  flex-basis: 60%; /* 右側の幅 */
-  line-height: 2; /* 行間を広めに取って読みやすく */
-  font-size: 15px;
-  text-align: justify; /* 両端揃えにすると綺麗です */
+	flex-basis: 60%; 
+	line-height: 2; 
+	font-size: 15px;
+	text-align: justify; 
 }
 
-/* レスポンシブ対応：スマホでは縦並びに */
+/*レスポンシブ*/
 @media (max-width: 768px) {
-  .strength-item {
-    flex-direction: column;
-  }
-  .strength-header {
-    margin-bottom: 15px;
-  }
-  .strength-description {
-    flex-basis: 100%;
-  }
+.strength-item {
+	flex-direction: column;
 }
+.strength-header {
+	margin-bottom: 15px;
+}
+.strength-description {
+	flex-basis: 100%;
+}}
 
+/* ------------------------------
+ フッター
+ ------------------------------ */
 .footer{
 	width: 100%;
 }
@@ -628,3 +595,46 @@ img{
 small{
 	font-size: 10px;
 }
+
+@media screen and (max-width: 767px) {
+.work-detail,
+.work-detail-container {
+    width: 100%;
+    margin-bottom: 80px; 
+}
+.work-detail {
+    max-width: calc(100% - 40px); 
+}
+.work-detail-container img {
+    width: 100%;
+    height: auto;
+}
+.work-omoi, 
+.work-note {
+    max-width: 100%;
+    margin: 60px auto; 
+}
+
+.work-all {
+    display: block; 
+    width: 100%;
+    margin-bottom: 80px;
+}
+.img-window {
+    width: 100%; 
+    height: 300px; 
+    margin-bottom: 30px;
+}
+
+.footer-inner {
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+}
+.footer-left {
+    margin-bottom: 40px;
+}
+.footer-nav {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}}

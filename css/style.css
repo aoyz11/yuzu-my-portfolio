@@ -68,9 +68,6 @@ img{
   border-radius: 50%;
   opacity: 0.4; /* 全体の発光強度（強すぎると本文を圧迫） */
   transform: translate(-50%, -50%); /* left/top の基準点（左上）を要素の中心に補正 */
-  /* 見た目のコア：
-      - background: radial-gradient（中心が最も濃く、外側でフェードアウト）
-      - サイズ/位置/色/濃度は各 nth-child で個別に指定し、重なりで奥行きを作る */
 }
 
 /* 各 blob の速度や見た目（サイズ・色・配置・フェード距離）を個別に指定 */
@@ -213,24 +210,6 @@ main{
 	font-family: "Shippori Antique" , "sans-serif";
 
 }
-
-/*
-.btn-wrap-l a{
-	color: #204659;
-}
-.btn-wrap{
-	display: flex;
-	flex-direction: column;
-	margin-top: 30px;
-}
-.btn-wrap-l{
-	display: flex;
-	flex-direction: column;
-}
-.btn-wrap-l .arrow-link-right{
-	font-weight: normal;
-}
-*/
 h1{
 	font-size: 35px;
 	font-weight: bold;
@@ -239,7 +218,7 @@ h1{
 h2{
 	font-size: 25px;
 	font-weight: bold;
-	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 /*大切にしていること*/
 .a-text1{
@@ -325,7 +304,7 @@ h2{
     width: 100%;
     height: auto;
     display: block;
-    transition: transform .5s ease; /* ズームの速度 */
+    transition: transform .5s ease; 
 }
 .work-box img{
 	flex: 1;
@@ -373,7 +352,6 @@ h2{
 }
 .work-title{
 	font-size: 20px;
-	font-weight: bold;
 	margin-bottom: 10px;
 }
 .work-description{
@@ -419,7 +397,6 @@ h2{
   	transform: scale(1, 1)
 }
 
-/**/
 .btn-about{ 
 	text-align: center;
 	margin-bottom: 150px;
@@ -587,73 +564,65 @@ h2{
  ------------------------------ */
 
 @media (max-width: 768px) {
-    /* 1. 全体幅を絞る（以前決めた88%〜90%くらいが綺麗です） */
     .about {
         width: 88%;
-        margin-bottom: 80px; /* 下の余白をスマホ用に詰める */
+        margin-bottom: 80px; 
     }
 
-    /* 2. タイトルの横棒（before）の位置調整 */
     .a-title {
         margin-bottom: 50px;
-        text-align: center; /* 中央寄せにしたい場合 */
+        text-align: center;
     }
     
     .a-title p {
-        font-size: 22px; /* 少し小さく */
+        font-size: 22px; 
         display: inline-block;
     }
 
     .a-title p:before {
-        left: -50px; /* 棒の位置を調整 */
+        left: -50px; 
         width: 1.5em;
     }
 
-    /* 3. 横並び（flex）を縦並びに切り替え */
     .my-profile {
-        flex-direction: column; /* 縦に並べる */
-        gap: 40px;             /* 画像と文字の間隔 */
-        align-items: center;    /* 中央に揃える */
+        flex-direction: column; 
+        gap: 40px;            
+        align-items: center;    
     }
-
-    /* 4. テキスト部分の調整 */
     .a-name {
         width: 100%;
-        order: 2; /* テキストを下に */
+        order: 2; 
     }
 
     .a-name h3 {
         margin-bottom: 30px;
         font-size: 20px;
-        text-align: center; /* 名前を中央に */
+        text-align: center; 
     }
 
     .a-name p {
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.8;
     }
 
-    /* 5. 画像部分の調整 */
     .img-pic {
-        order: 1; /* 画像を上に */
+        order: 1; 
         width: 100%;
         display: flex;
         justify-content: center;
     }
 
     .img-pic img {
-        max-width: 220px; /* スマホで見やすいサイズ */
+        max-width: 220px; 
     }
 
-    /* 6. 「私について」ボタン（右揃えを中央揃えに） */
     .a-name-about {
         justify-content: center;
         margin-top: 20px;
     }
 
-    /* ボタンの中の矢印位置を微調整 */
     .a-name-about a:after {
-        right: 18px; /* 丸ボタンの中央に寄せる */
+        right: 25px; 
     }
 }	
 /* ------------------------------
@@ -662,30 +631,26 @@ h2{
 
 @media screen and (max-width: 767px) {
 	
-    /* 1. 全体を囲う枠の調整 */
     .about-wappper {
         width: 100%;
-        margin-bottom: 100px; /* PC版の260pxはスマホでは広すぎるので調整 */
+        margin-bottom: 100px; 
     }
 
-    /* 2. 700px固定を解除して、スマホでも「少し狭め」を維持する */
     .About {
-        width: 88%;           /* 画面の88%の幅にする（左右に余白ができる） */
-        max-width: 500px;     /* 広がりすぎないように制限 */
-        margin: 0 auto;       /* 中央寄せ */
-        gap: 50px;            /* セクション間の隙間を少し詰める */
+        width: 88%;         
+        max-width: 500px;     
+        margin: 0 auto;      
+        gap: 50px;           
     }
 
-    /* 3. 見出しの改行（br）を無効化する */
     #aboutme br {
         display: none;
     }
 
-    /* 4. 本文の調整 */
     .about-text p {
-        font-size: 15px;      /* 文字を少し小さく */
-        padding-left: 0;      /* PC版の20pxの余白をリセットして中央に寄せる */
-        line-height: 2.0;     /* 2.7だとスマホでは間延びするので少し詰める */
+        font-size: 15px;      
+        padding-left: 0;     
+        line-height: 2.0;    
     }
 	.work-img-zoom {
 		padding: 0 60px;
@@ -717,6 +682,8 @@ h2{
 		height: auto;
 	}
 }
+
+
 .footer{
 	width: 100%;
 }
@@ -756,3 +723,46 @@ h2{
 small{
 	font-size: 10px;
 }
+
+@media screen and (max-width: 767px) {
+.work-detail,
+.work-detail-container {
+    width: 100%;
+    margin-bottom: 80px; 
+}
+.work-detail {
+    max-width: calc(100% - 40px); 
+}
+.work-detail-container img {
+    width: 100%;
+    height: auto;
+}
+.work-omoi, 
+.work-note {
+    max-width: 100%;
+    margin: 60px auto; 
+}
+
+.work-all {
+    display: block; 
+    width: 100%;
+    margin-bottom: 80px;
+}
+.img-window {
+    width: 100%; 
+    height: 300px; 
+    margin-bottom: 30px;
+}
+
+.footer-inner {
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+}
+.footer-left {
+    margin-bottom: 40px;
+}
+.footer-nav {
+    padding-top: 80px;
+    padding-bottom: 100px;
+	}}
