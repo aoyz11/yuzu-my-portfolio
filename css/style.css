@@ -28,7 +28,9 @@ img{
 	height: auto;
 	vertical-align: bottom;
 }
-
+h2{
+	font-weight: lighter;
+}
 /* ------------------------------
  丸く動く背景アニメーション
  ------------------------------ */
