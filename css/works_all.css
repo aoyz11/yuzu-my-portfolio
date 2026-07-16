@@ -284,23 +284,6 @@ h1{
 	color: #7bbbce;
 }
 
-/* 【レスポンシブ】スマホ */
-@media screen and (max-width: 767px) {
-.works-site ,.works-banner{
-    grid-template-columns: 1fr; 
-    gap: 80px;
-	padding: 0 60px;
-
-}}
-@media screen and (max-width: 767px) {
-.page-title{
-	text-align: center;
-	font-size: 26px;
-}}
-@media screen and (max-width: 767px) {
-.portfolio-container{
-	margin: 100px auto;
-}}
 .footer{
 	width: 100%;
 }
@@ -343,3 +326,65 @@ h1{
 small{
 	font-size: 10px;
 }
+
+
+
+/* 【レスポンシブ】スマホ */
+@media screen and (max-width: 767px) {
+.works-site ,.works-banner{
+    grid-template-columns: 1fr; 
+    gap: 80px;
+	padding: 0 60px;
+
+}}
+@media screen and (max-width: 767px) {
+.page-title{
+	text-align: center;
+	font-size: 26px;
+}}
+@media screen and (max-width: 767px) {
+.portfolio-container{
+	margin: 100px auto;
+}
+.footer{
+	width: 100%;
+}
+.footer-logo img{
+	width: 90px;
+}
+.footer-nav{
+	align-items: flex-start;
+	padding-top: 160px;
+	padding-bottom: 200px;
+	border-radius: 50vmax 50vmax 0 0; 
+	background-color: rgba(255, 255, 255, .4);
+	backdrop-filter: blur(31px);
+	-webkit-backdrop-filter: blur(31px);
+	box-shadow: 0 4px 8px rgba(20, 28, 33, 0.25);	
+}
+.footer-inner{
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.footer-nav-list{
+	margin-bottom: 40px;
+}
+.footer-nav-list li{
+	margin-bottom: 10px;
+}
+.info-contact{
+	display: flex;
+}
+.info2:before {
+	border-left: 1px solid #5d5f68;
+	content:"";
+	padding-left: 5px;
+	margin-left: 5px;
+}
+small{
+	font-size: 10px;
+}}
